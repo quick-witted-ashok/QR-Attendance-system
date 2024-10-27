@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generate QR Code</title>
+</head>
+<body>
+    <h1>QR Code for Classroom {{ classroom_id }}</h1>
+    <img src="{{ qr_code_path }}" alt="QR Code for Classroom">
+    <p>Expires at: {{ expiration_time }}</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QR Code for Attendance</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const expirationTime = new Date("{{ expiration_time }}").getTime();
+            const timerElement = document.getElementById("timer");
+            const qrCodeImage = document.getElementById("qr-code");
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const timeLeft = expirationTime - now;
+
+                if (timeLeft > 0) {
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                    timerElement.innerHTML = `Expires in: ${minutes}m ${seconds}s`;
+                } else {
+                    timerElement.innerHTML = "QR Code has expired.";
+                    qrCodeImage.style.display = "none";
+                    clearInterval(countdown);
+                }
+            }
+
+            const countdown = setInterval(updateTimer, 1000);
+            updateTimer();
+        });
+    </script>
+</head>
+<body>
+    <h1>Attendance QR Code</h1>
+    <img id="qr-code" src="{{ qr_code_path }}" alt="QR Code for Attendance" style="display: block; margin: 20px auto;">
+    <p id="timer"></p>
+</body>
+</html> -->
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QR Code for Attendance</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const expirationTime = new Date("{{ expiration_time }}").getTime();
+            const timerElement = document.getElementById("timer");
+            const qrCodeImage = document.getElementById("qr-code");
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const timeLeft = expirationTime - now;
+
+                if (timeLeft > 0) {
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                    timerElement.innerHTML = `Expires in: ${minutes}m ${seconds}s`;
+                } else {
+                    timerElement.innerHTML = "QR Code has expired.";
+                    qrCodeImage.style.display = "none";
+                    clearInterval(countdown);
+                }
+            }
+
+            const countdown = setInterval(updateTimer, 1000);
+            updateTimer();
+        });
+    </script>
+</head>
+<body>
+    <h1>Attendance QR Code</h1>
+    <img id="qr-code" src="{{ qr_code_path }}" alt="QR Code for Attendance" style="display: block; margin: 20px auto;">
+    <p id="timer"></p>
+</body>
+</html> -->

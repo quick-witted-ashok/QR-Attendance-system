@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance for {{ classroom.name }}</title>
+</head>
+<body>
+    <h1>Attendance for {{ classroom.name }}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <ul>
+            {% for student in students %}
+                <li>
+                    <input type="checkbox" name="selected_students" value="{{ student.id }}">
+                    {{ student.name }}  <!-- Assuming the student model has a name field -->
+                </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Submit Attendance</button>
+    </form>
+</body>
+</html>

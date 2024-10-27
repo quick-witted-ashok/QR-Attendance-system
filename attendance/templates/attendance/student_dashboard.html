@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, {{ request.user.username }}</h2>
+
+    <!-- Logout Button -->
+    <form action="{% url 'logout' %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+
+    <h3>Your Attendance Records</h3>
+    <ul>
+        {% for record in attendance_records %}
+            <li>{{ record.date }} - {{ record.status }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

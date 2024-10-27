@@ -1,0 +1,17 @@
+attendance/templates/attendance/add_student.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Student to {{ classroom.name }}</title>
+</head>
+<body>
+    <h2>Add Student to Classroom: {{ classroom.name }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Student</button>
+    </form>
+    <a href="{% url 'classroom_detail' classroom.id %}">Back to Classroom</a>
+</body>
+</html>

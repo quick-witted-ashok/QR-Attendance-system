@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QR Code Display</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Scan QR Code</h1>
+    <img src="{{ qr_code_path }}" alt="QR Code" id="qrCode">
+    <div id="countdown"></div>
+
+    <script>
+        // Countdown Timer (JavaScript)
+        let countdownTime = 300; // 5 minutes in seconds
+        const countdownDisplay = document.getElementById("countdown");
+
+        const countdown = setInterval(() => {
+            if (countdownTime <= 0) {
+                clearInterval(countdown);
+                countdownDisplay.innerHTML = "QR Code Expired!";
+            } else {
+                const minutes = Math.floor(countdownTime / 60);
+                const seconds = countdownTime % 60;
+                countdownDisplay.innerHTML = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                countdownTime--;
+            }
+        }, 1000);
+
+        // Mock QR Data Submission (Replace with actual scanning logic)
+        $(document).ready(function() {
+            const qrData = "{{ classroom_id }}," + new Date(Date.now() + countdownTime * 1000).toISOString();
+            $.post("/scan_qr_code/", { qr_data: qrData })
+                .done(function(data) {
+                    // Redirect to attendance selection page with student IDs
+                    console.log(data.student_ids); // Use this array for displaying IDs
+                })
+                .fail(function(error) {
+                    alert(error.responseJSON.error);
+                });
+        });
+    </script>
+</body>
+</html>

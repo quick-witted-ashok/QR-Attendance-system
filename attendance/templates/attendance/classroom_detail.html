@@ -1,0 +1,37 @@
+
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>Classroom: {{ classroom.name }}</h2>
+
+  <!-- Link to view students in this classroom -->
+  <a href="{% url 'classroom_students' classroom.id %}">View Students</a>
+
+  <!-- Other classroom details -->
+
+{% endblock %}
+<!-- attendance/templates/attendance/classroom_detail.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Classroom Details - {{ classroom.name }}</title>
+</head>
+<body>
+    <h2>Classroom: {{ classroom.name }}</h2>
+    <h3>Students</h3>
+    <ul>
+        {% for student in students %}
+            <li>{{ student.user.username }}</li>
+        {% empty %}
+            <li>No students enrolled.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_student_to_classroom' classroom.id %}">Add Student to Classroom</a>
+</body>
+</html> -->
+
+
+
+<!-- classroom_detail.html -->
+

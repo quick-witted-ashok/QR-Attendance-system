@@ -1,0 +1,14 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>Students in {{ classroom.name }}</h2>
+  <ul>
+    {% for student in students %}
+      <li>{{ student.name }}</li>
+    {% empty %}
+      <li>No students enrolled in this classroom.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'classroom_detail' classroom.id %}">Back to Classroom</a>
+{% endblock %}
+

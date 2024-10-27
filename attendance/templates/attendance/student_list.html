@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Classroom Students</title>
+    <script>
+        // JavaScript function to fetch and display students
+        async function loadStudents(classroomId) {
+            const url = `/classroom/${classroomId}/students/`;
+            try {
+                const response = await fetch(url);
+                if (response.ok) {
+                    const data = await response.json();
+                    const studentListElement = document.getElementById("student-list");
+                    studentListElement.innerHTML = '';  // Clear previous entries
+                    
+                    data.students.forEach(student => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${student.name} (ID: ${student.id})`;
+                        studentListElement.appendChild(listItem);
+                    });
+                } else {
+                    console.error("Failed to fetch students.");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+
+        // Call the loadStudents function on page load with a sample classroom ID
+        window.onload = function() {
+            const classroomId = document.getElementById('classroom-id').value;  // Replace with dynamic ID if available
+            loadStudents(classroomId);
+        };
+    </script>
+</head>
+<body>
+    <h1>Students in Classroom</h1>
+
+    <!-- Hidden input to hold the classroom ID -->
+    <input type="hidden" id="classroom-id" value="{{ classroom_id }}">
+
+    <ul id="student-list">
+        <!-- List of students will be appended here by JavaScript -->
+    </ul>
+
+    <!-- Optional: Button to manually refresh the list -->
+    <button onclick="loadStudents(document.getElementById('classroom-id').value)">Load Students</button>
+</body>
+</html>

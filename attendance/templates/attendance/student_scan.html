@@ -1,0 +1,12 @@
+<h2>Scan QR Code</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="qr_data">Enter QR Data:</label>
+    <input type="text" id="qr_data" name="qr_data" placeholder="Enter QR Code data here">
+    <button type="submit">Mark Attendance</button>
+</form>
+<div id="message">
+    {% if message %}
+        <p>{{ message }}</p>
+    {% endif %}
+</div>

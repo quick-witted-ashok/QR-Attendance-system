@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ user.username }}</h1>
+
+    <!-- Logout Button -->
+    <form action="{% url 'logout' %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+
+    <h2>Classes You Manage</h2>
+    {% if classrooms %}
+        <ul>
+            {% for classroom in classrooms %}
+                <li>
+                    {{ classroom.name }} 
+                    <a href="{% url 'generate_qr_code' classroom.id %}">Generate QR Code</a>
+                    <a href="{% url 'view_attendance' classroom.id %}">View Attendance</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You are not managing any classes yet.</p>
+    {% endif %}
+</body>
+</html>
